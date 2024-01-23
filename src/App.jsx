@@ -152,21 +152,23 @@ const App = () => {
   };
 
   return (
-    <div className='container mx-auto my-8'>
-      {comments.map((comment) => (
-        <Comment
-          key={comment.id}
-          comment={comment}
-          handleUpdate={handleCommentUpdate}
-          handleDelete={handleCommentDelete}
-          handleReply={handleAddReply}
-          handleReplyUpdate={handleReplyUpdate}
-          handleReplyDelete={handleReplyDelete}
-          handleUpvote={handleUpvote}
-          handleDownvote={handleDownvote}
-        />
-      ))}
-      <CommentForm submitLabel='Send' handleSubmit={handleNewComment} />
+    <div className='my-8'>
+      {comments
+        .sort((a, b) => b.score - a.score)
+        .map((comment) => (
+          <Comment
+            key={comment.id}
+            comment={comment}
+            handleUpdate={handleCommentUpdate}
+            handleDelete={handleCommentDelete}
+            handleReply={handleAddReply}
+            handleReplyUpdate={handleReplyUpdate}
+            handleReplyDelete={handleReplyDelete}
+            handleUpvote={handleUpvote}
+            handleDownvote={handleDownvote}
+          />
+        ))}
+      <CommentForm submitLabel='SEND' handleSubmit={handleNewComment} />
     </div>
   );
 };
